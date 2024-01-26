@@ -1,8 +1,4 @@
-/*
-FALTA
--BOTON DELETE POKEMON
--Editar también
-*/
+/*Tener cuidado. los console.log dentro de los effect. y no se pueden meter en variables para luego renderizarlos, necesitan estar en un estado */
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -17,13 +13,16 @@ import { useRouter } from "next/router";
 export default function pokeDetails() {
   let router = useRouter();
   let { idImported } = router.query;
-  const [information, setInformation] = useState({}); //información del
+  const [information, setInformation] = useState({});
   const [newPokeName, setNewPokeName] = useState("");
   const [hidden, setHidden] = useState(false);
+
+  const [details, setDetails] = useState({});
 
   useEffect(() => {
     let infoAux = getPokemonById(idImported); //Para sacar la información del pokemon
     setInformation(infoAux);
+    setDetails(infoAux.details);
   }, []);
 
   const renamehandler = (e) => {
@@ -37,6 +36,17 @@ export default function pokeDetails() {
     const hiddenAux = hidden;
     setHidden(!hiddenAux);
   };
+
+  // console.log("empty string", !""); // true
+  // console.log("empty space", !" "); // false
+  // console.log("zero as string", !"0"); // false
+  // console.log("0 number", !0); // true
+  // console.log("string", !"sdiuhf"); // false
+  // console.log("information.id", typeof information.id, information.id);
+
+  if (typeof information.id == "undefined") {
+    return;
+  }
 
   return (
     <>
@@ -57,12 +67,15 @@ export default function pokeDetails() {
             id={information.id}
             name={information.name}
             url={information.url}
+            height={details.height}
+            weight={details.weight}
+            type={details.type}
           />
         </div>
         <div>
           <button
             onClick={() => {
-              deleteAndBack(idImported);
+              deleteAndBack();
             }}
           >
             Delete Pokemon
