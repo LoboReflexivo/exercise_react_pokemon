@@ -21,9 +21,7 @@ export default function Home() {
       <hr />
       {pokeList.map((p) => {
         return (
-          <>
-            <PokeListComponent id={p.id} name={p.nombre} url={p.url} />
-          </>
+          <PokeListComponent key={p.id} id={p.id} name={p.nombre} url={p.url} />
         );
       })}
     </div>

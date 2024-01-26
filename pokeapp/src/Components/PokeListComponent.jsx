@@ -4,11 +4,6 @@ import Link from "next/link";
 export default function PokeListComponent(props) {
   const { id, name, url } = props;
 
-  const [newId, setNewId] = useState("");
-  useEffect(() => {
-    setNewId(id);
-  }, []);
-
   return (
     <div>
       <div>
@@ -21,7 +16,7 @@ export default function PokeListComponent(props) {
           href={{
             pathname: "/pokeDetails",
             query: {
-              identificador: props.id,
+              idImported: id,
             },
           }}
         >

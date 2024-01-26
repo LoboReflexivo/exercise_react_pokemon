@@ -25,8 +25,7 @@ export const deletePokemonById = (idPokemon) => {
   let pokemonAux = pokemons.findIndex((pokemon) => pokemon.id == idPokemon);
   pokemons.splice(pokemonAux, 1);
 };
-/**
- 
+/* 
 @param {number} id
 @param {string} nombre
 @param {string} url
