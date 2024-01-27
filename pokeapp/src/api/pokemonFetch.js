@@ -4,7 +4,7 @@ export const getPokemons = () => {
   return pokemons.map((pokemon) => {
     return {
       id: pokemon.id,
-      nombre: pokemon.name,
+      name: pokemon.name,
       url: pokemon.url,
     };
   });
@@ -27,16 +27,16 @@ export const deletePokemonById = (idPokemon) => {
 };
 /* 
 @param {number} id
-@param {string} nombre
+@param {string} name
 @param {string} url
 @param {number} height
 @param {number} weight
 @param {array<string>} type
 */
-export const addPokemon = (id, nombre, url, height, weight, type) => {
+export const addPokemon = (id, name, url, height, weight, type) => {
   pokemons.push({
     id: id,
-    name: nombre,
+    name: name,
     url: url,
     details: {
       height: height,

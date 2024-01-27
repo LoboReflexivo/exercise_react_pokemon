@@ -3,6 +3,9 @@ import Link from "next/link";
 
 export default function PokeListComponent(props) {
   const { id, name, url } = props;
+  console.log("id", id);
+  console.log("name", name);
+  console.log("url", url);
 
   return (
     <div>
@@ -14,7 +17,7 @@ export default function PokeListComponent(props) {
         </div>
         <Link
           href={{
-            pathname: "/pokeDetails",
+            pathname: "/pokeDetailsPage",
             query: {
               idImported: id,
             },

@@ -12,16 +12,16 @@ export default function Home() {
   useEffect(() => {
     setPokeList(pokemons);
   }, []);
-
+  console.log("pokelist", pokeList);
   return (
     <div>
       <h1>Pokemon</h1>
-      <Link href={"/creationPage"}>Create Pokemon</Link>
-      <Link href={"/contactPage"}>Contact</Link>
+      <Link href={"/createPokemonPage"}>Create Pokemon</Link>
+      <Link href={"/contacPage"}>Contact</Link>
       <hr />
       {pokeList.map((p) => {
         return (
-          <PokeListComponent key={p.id} id={p.id} name={p.nombre} url={p.url} />
+          <PokeListComponent key={p.id} id={p.id} name={p.name} url={p.url} />
         );
       })}
     </div>
