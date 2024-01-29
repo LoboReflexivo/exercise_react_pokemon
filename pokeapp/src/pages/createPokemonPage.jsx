@@ -1,4 +1,4 @@
-import { addPokemon, getPokemons } from "@/api/pokemonFetch";
+import { addPokemon } from "@/api/pokemonFetch";
 import { pokemons } from "@/mock/dbPokemon";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -59,14 +59,12 @@ export default function createPage() {
       <div>
         <h3>PokeTypes</h3>
         <input type="string" value={type} onChange={newTypeHandler} />
-        <small>
-          The types are necesary that they're separated with spaces{","}
-        </small>
+        <small>The types are necesary that they're separated with commas</small>
       </div>
       <div>
         <button
           onClick={() => {
-            addPokemon(id, name, url, height, weight, type.split(" "));
+            addPokemon(id, name, url, height, weight, type.split(","));
           }}
         >
           Save Pokemon
