@@ -1,8 +1,12 @@
 import React from "react";
+import Link from "next/link";
 
 export default function contacPage() {
   return (
     <div>
+      <div>
+        <Link href={"/"}>Home</Link>
+      </div>
       <h1>Contac Page</h1>
       <h2>My name:</h2>
       <p>Darío</p>

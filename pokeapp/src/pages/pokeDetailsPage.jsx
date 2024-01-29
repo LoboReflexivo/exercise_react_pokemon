@@ -46,7 +46,8 @@ export default function pokeDetails() {
 
   if (typeof information.id == "undefined") {
     return;
-  }
+  } //Se renderiza primero como vacio y segundo lleno
+  //Para evitar que se rompa, el primero pasa por aqui y no hace nada, pero el segundo no al no ser undefined
 
   return (
     <>

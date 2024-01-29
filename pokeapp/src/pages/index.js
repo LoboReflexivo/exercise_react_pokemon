@@ -1,4 +1,3 @@
-//revisar lo de la KEY porque aún da error
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import PokeListComponent from "@/Components/PokeListComponent";
@@ -16,8 +15,12 @@ export default function Home() {
   return (
     <div>
       <h1>Pokemon</h1>
-      <Link href={"/createPokemonPage"}>Create Pokemon</Link>
-      <Link href={"/contacPage"}>Contact</Link>
+      <div>
+        <Link href={"/createPokemonPage"}>Create Pokemon</Link>
+      </div>
+      <div>
+        <Link href={"/contacPage"}>Contact</Link>
+      </div>
       <hr />
       {pokeList.map((p) => {
         return (

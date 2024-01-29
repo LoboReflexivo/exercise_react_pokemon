@@ -1,5 +1,7 @@
 import { addPokemon, getPokemons } from "@/api/pokemonFetch";
-import React, { useState } from "react";
+import { pokemons } from "@/mock/dbPokemon";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function createPage() {
   const [id, setId] = useState();
@@ -7,11 +9,13 @@ export default function createPage() {
   const [url, setUrl] = useState("");
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
-  const [type, setType] = useState([]);
+  const [type, setType] = useState("");
 
-  const newIdHander = (e) => {
-    return setId(e.target.value);
-  };
+  useEffect(() => {
+    const newId = pokemons.length + 1;
+    return setId(newId);
+  }, []);
+
   const newNameHander = (e) => {
     return setName(e.target.value);
   };
@@ -24,35 +28,53 @@ export default function createPage() {
   const newWeightHandler = (e) => {
     return setWeight(e.target.value);
   };
-  console.log(addPokemon(id, name, url, height, weight));
-  // const creacionArray = (e) =>{
-  //   let newArray
-  //   let valor = e.target.value
-  //   return newArray.push(valor)
-  // }
-  // const newTypeHandler = (e) =>{
-  //   const type= e.target.value
+  const newTypeHandler = (e) => {
+    let typeAux = e.target.value;
+    setType(typeAux);
+  };
 
-  // }
-  //Boton con pop(Borrar el ultimo elemento del array de tipos)
+  console.log("type", type);
 
-  //para borrar tipo, primero mirar el index en el que está el tipo y luego eliminarlo con respecto a dicha posición
-
-  //¿Hacer un boton para todo?
+  if (typeof type == "undefined") {
+    return;
+  }
   return (
     <div>
-      <input type="number" value={id} onChange={newIdHander} />
-      <input type="string" value={name} onChange={newNameHander} />
-      <input type="string" value={url} onChange={newUrlHandler} />
-      <input type="string" value={height} onChange={newHeightHandler} />
-      <input type="number" value={weight} onChange={newWeightHandler} />
-      <button
-        onClick={() => {
-          addPokemon(id, name, url, height, weight);
-        }}
-      >
-        Save Pokemon
-      </button>
+      <div>
+        <h3>Pokename</h3>
+        <input type="string" value={name} onChange={newNameHander} />
+      </div>
+      <div>
+        <h3>Pokeurl</h3>
+        <input type="string" value={url} onChange={newUrlHandler} />
+      </div>
+      <div>
+        <h3>pokeheight</h3>
+        <input type="string" value={height} onChange={newHeightHandler} />
+      </div>
+      <div>
+        <h3>PokeWeight</h3>
+        <input type="number" value={weight} onChange={newWeightHandler} />
+      </div>
+      <div>
+        <h3>PokeTypes</h3>
+        <input type="string" value={type} onChange={newTypeHandler} />
+        <small>
+          The types are necesary that they're separated with spaces{","}
+        </small>
+      </div>
+      <div>
+        <button
+          onClick={() => {
+            addPokemon(id, name, url, height, weight, type.split(" "));
+          }}
+        >
+          Save Pokemon
+        </button>
+      </div>
+      <div>
+        <Link href={"/"}>Home</Link>
+      </div>
     </div>
   );
 }
